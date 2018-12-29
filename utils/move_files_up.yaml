@@ -9,7 +9,7 @@
   tasks:
     - name: Find files in folder
       find:
-        paths: "{ my_move_up_dir }"
+        paths: "{{ my_move_up_dir }}"
       register: files_matched
     
     - debug:
