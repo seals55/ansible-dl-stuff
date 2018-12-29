@@ -9,5 +9,5 @@
       copy:
         content: "hello world\n"
         dest: /mnt/user/temp/testfile.txt
-        user: "99"
+        owner: "99"
         group: "users"
