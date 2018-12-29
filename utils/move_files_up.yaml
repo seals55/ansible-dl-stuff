@@ -7,6 +7,9 @@
     my_move_up_dir: "{{ move_up_dir }}"
 
   tasks:
+    - debug:
+        msg: "{{ my_move_up_dir }}"
+
     - name: Find files in folder
       find:
         paths: "{{ my_move_up_dir }}"
