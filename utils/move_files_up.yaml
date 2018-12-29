@@ -7,8 +7,8 @@
     my_move_up_dir: "{{ move_up_dir }}"
 
   tasks:
-    - debug:
-      name: Print Working Folder
+    - name: Print Working Folder
+      debug:
         msg: "Working folder: {{ my_move_up_dir }}"
 
     - name: Find files in folder "{{ my_move_up_dir }}"
@@ -19,8 +19,8 @@
       register: files_matched
       become: yes
     
-    - debug:
-      name: Print files found in "{{ my_move_up_dir }}"
+    - name: Print files found in "{{ my_move_up_dir }}"
+      debug:      
         msg: "{{ files_matched }}"
     
     - name: Move file to parent folder
@@ -28,8 +28,8 @@
       with_items: "{{ files_matched.files }}"
       register: cmd_out
 
-    - debug:
-      name: Print mv output
+    - name: Print mv output
+      debug:
         msg: "{{ cmd_out }}"
 
 
