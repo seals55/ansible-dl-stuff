@@ -22,7 +22,7 @@
         msg: "{{ files_matched }}"
     
     - name: Move file to parent
-      command: 'echo {{ item.path.split("/")[0:-2] | join("/") }}'
+      command: 'echo mv \"{{ item.path }}\" \"{{ item.path.split("/")[0:-2] | join("/") }}\"'
       with_items: "{{ files_matched.files }}"
       register: cmd_out
 
