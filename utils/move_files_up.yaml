@@ -22,7 +22,7 @@
         msg: "{{ files_matched }}"
     
     - name: Move file to parent
-      command: echo "Moving {{ item.path }} to .."
+      command: mv "{{ item.path }}" ..
       with_items: "{{ files_matched.files }}"
       register: cmd_out
 
