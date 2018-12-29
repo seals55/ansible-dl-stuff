@@ -1,0 +1,12 @@
+---
+
+- name: Check User Folder
+  hosts: unraid
+  gather_facts: no
+  vars:
+    my_move_up_dir: "{{ move_up_dir }}"
+
+  tasks:
+    - name: Find files in folder
+      find:
+        paths: "{ my_move_up_dir }"
