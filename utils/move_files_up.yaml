@@ -20,4 +20,13 @@
     
     - debug:
         msg: "{{ files_matched }}"
+    
+    - name: Move file to parent
+      command: echo "Moving {{ item.path }} to .."
+      with_items: "{{ files_matched.files }}"
+      register: cmd_out
+
+    - debug:
+        msg: "{{ cmd_out }}"
+
 
