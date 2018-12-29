@@ -8,9 +8,10 @@
 
   tasks:
     - debug:
+      name: Print Working Folder
         msg: "Working folder: {{ my_move_up_dir }}"
 
-    - name: Find files in folder
+    - name: Find files in folder "{{ my_move_up_dir }}"
       find:
         paths: "{{ my_move_up_dir }}"
         patterns: "*.*"
@@ -19,14 +20,16 @@
       become: yes
     
     - debug:
+      name: Print files found in "{{ my_move_up_dir }}"
         msg: "{{ files_matched }}"
     
-    - name: Move file to parent
+    - name: Move file to parent folder
       command: 'mv "{{ item.path }}" "{{ item.path.split("/")[0:-2] | join("/") }}"'
       with_items: "{{ files_matched.files }}"
       register: cmd_out
 
     - debug:
+      name: Print mv output
         msg: "{{ cmd_out }}"
 
 
