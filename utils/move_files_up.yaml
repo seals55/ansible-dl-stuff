@@ -13,6 +13,7 @@
     - name: Find files in folder
       find:
         paths: "{{ my_move_up_dir }}"
+        patterns: "*.*"
       register: files_matched
       become: yes
     
