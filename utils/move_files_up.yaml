@@ -1,7 +1,7 @@
 ---
 
 - name: Check User Folder
-  hosts: unraid
+  hosts: downloader
   gather_facts: no
   vars:
     my_move_up_dir: "{{ move_up_dir }}"
