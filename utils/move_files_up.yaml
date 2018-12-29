@@ -10,3 +10,8 @@
     - name: Find files in folder
       find:
         paths: "{ my_move_up_dir }"
+        register: files_matched
+    
+    - debug:
+        msg: "{{ files_matched }}"
+        
