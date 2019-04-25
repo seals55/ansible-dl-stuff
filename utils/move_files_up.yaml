@@ -18,11 +18,11 @@
         recurse: yes
       register: files_matched
       become: yes
-    
+
     - name: Print files found in "{{ my_move_up_dir }}"
-      debug:      
+      debug:
         msg: "{{ files_matched }}"
-    
+
     - name: Move file to parent folder
       command: 'mv "{{ item.path }}" "{{ item.path.split("/")[0:-2] | join("/") }}"'
       with_items: "{{ files_matched.files }}"
@@ -32,4 +32,15 @@
       debug:
         msg: "{{ cmd_out }}"
 
+    - name: Remove empty folders
+      shell: |
+        find . -type l -print -not -path "*_UNPACK_*" | xargs -d '\n' rm -f
+        find . -type d -print -not -path "*_UNPACK_*" | sort -r | xargs -d '\n' rmdir -p --ignore-fail-on-non-empty 2>/dev/null
+        sudo find . -type d -empty -delete
+      args:
+        chdir: "{{ my_move_up_dir }}"
+      register: cmd_out
 
+    - name: Print cleandir output
+      debug:
+        msg: "{{ cmd_out }}"
