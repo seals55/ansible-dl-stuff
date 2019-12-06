@@ -28,14 +28,14 @@
       debug:
         msg: "{{ files_matched }}"
 
-    - name: Move file to parent folder
-      command: 'echo mv "{{ item.path }}" "{{ item.path.split("/")[0:-2] | join("/") }}"'
-      with_items: "{{ files_matched.files }}"
-      register: cmd_out
+    # - name: Move file to parent folder
+    #   command: 'mv "{{ item.path }}" "{{ item.path.split("/")[0:-2] | join("/") }}"'
+    #   with_items: "{{ files_matched.files }}"
+    #   register: cmd_out
 
-    - name: Print mv output
-      debug:
-        msg: "{{ cmd_out }}"
+    # - name: Print mv output
+    #   debug:
+    #     msg: "{{ cmd_out }}"
 
     - name: Remove empty folders
       shell: |
@@ -52,6 +52,7 @@
 
     - name: Move files to dest. folder
       shell: |
+        shopt -s dotglob nullglob
         mv "*" "{{ my_move_to_dir }}"
       args:
         chdir: "{{ my_move_up_dir }}"
