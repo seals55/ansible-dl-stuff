@@ -51,8 +51,12 @@
         msg: "{{ cmd_out }}"
 
     - name: Move files to dest. folder
-      command: 'mv "{{ move_up_dir }}/*" "{{ move_to_dir }}"'
+      shell: |
+        mv "*" "{{ move_to_dir }}"
+      args:
+        chdir: "{{ my_move_up_dir }}"
       register: cmd_out
+      become: yes
 
     - name: Print mv output
       debug:
