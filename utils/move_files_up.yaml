@@ -29,7 +29,7 @@
         msg: "{{ files_matched }}"
 
     - name: Move file to parent folder
-      command: 'mv "{{ item.path }}" "{{ item.path.split("/")[0:-2] | join("/") }}"'
+      command: 'echo mv "{{ item.path }}" "{{ item.path.split("/")[0:-2] | join("/") }}"'
       with_items: "{{ files_matched.files }}"
       register: cmd_out
 
@@ -52,7 +52,7 @@
 
     - name: Move files to dest. folder
       shell: |
-        mv "*" "{{ move_to_dir }}"
+        mv "*" "{{ my_move_to_dir }}"
       args:
         chdir: "{{ my_move_up_dir }}"
       register: cmd_out
