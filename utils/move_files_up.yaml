@@ -28,14 +28,14 @@
       debug:
         msg: "{{ files_matched }}"
 
-    # - name: Move file to parent folder
-    #   command: 'mv "{{ item.path }}" "{{ item.path.split("/")[0:-2] | join("/") }}"'
-    #   with_items: "{{ files_matched.files }}"
-    #   register: cmd_out
+    - name: Move file to parent folder
+      command: 'mv "{{ item.path }}" "{{ item.path.split("/")[0:-2] | join("/") }}"'
+      with_items: "{{ files_matched.files }}"
+      register: cmd_out
 
-    # - name: Print mv output
-    #   debug:
-    #     msg: "{{ cmd_out }}"
+    - name: Print mv output
+      debug:
+        msg: "{{ cmd_out }}"
 
     - name: Remove empty folders
       shell: |
