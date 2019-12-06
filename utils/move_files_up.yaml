@@ -52,7 +52,7 @@
 
     - name: Move files to dest. folder
       shell: |
-        find . -mindepth 1 -maxdepth 1 -exec echo mv -t "{{ my_move_to_dir }}/" -- {} +
+        find . -mindepth 1 -maxdepth 1 -exec mv -t "{{ my_move_to_dir }}/" -- {} +
       args:
         chdir: "{{ my_move_up_dir }}"
       register: cmd_out
